@@ -1,24 +1,24 @@
-{{#isGET}}
-    {{#if isUUID}}
-        export function {{&methodName}} (uuid, params) {
+{{#if isGET}}
+    {{#if variable}}
+        export function {{methodName}} ({{getVariable path}}, params) {
             return request({
                 url: `{{pathParameter path}}`,
                 params
             })
         }
         {{else}}
-        export function {{&methodName}} (params) {
+        export function {{methodName}} (params) {
             return request({
-                url: '{{&path}}',
+                url: '{{path}}',
                 params
             })
         }
     {{/if}}
-{{/isGET}}
+{{/if}}
 
-{{#isPOST}}
-    {{#if isUUID}}
-        export function {{&methodName}} (uuid, data) {
+{{#if isPOST}}
+    {{#if variable}}
+        export function {{methodName}} ({{getVariable path}}, data) {
             return request({
                 url: `{{pathParameter path}}`,
                 method: 'post',
@@ -26,12 +26,12 @@
             })
         }
         {{else}}
-        export function {{&methodName}} (data) {
+        export function {{methodName}} (data) {
             return request({
-                url: '{{&path}}',
+                url: '{{path}}',
                 method: 'post',
                 data
             })
         }
     {{/if}}
-{{/isPOST}}
+{{/if}}
