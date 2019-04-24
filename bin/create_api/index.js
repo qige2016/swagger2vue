@@ -15,7 +15,7 @@ request.get({
   tags.forEach(function(tag) {
     const includeTag = {}
     _.forEach(paths, function(value, key) {
-      const method = value.get || value.post || value.patch || value.copy || value.head || value.options || value.link || value.unlink || value.purge || value.lock || value.unlock || value.propfind
+      const method = value.get || value.post || value.put || value.delete || value.patch || value.copy || value.head || value.options || value.link || value.unlink || value.purge || value.lock || value.unlock || value.propfind
       if (method.tags[0] === tag.name) {
         includeTag[key] = value
       }
