@@ -4,7 +4,7 @@ const _ = require('lodash')
 const request = require('request')
 const parse = require('../../lib/parse.js')
 const codegen = require('./codegen.js')
-const swaggerPath = 'http://172.16.4.43:9527/v2/api-docs';
+const swaggerPath = 'http://172.16.4.29:9527//v2/api-docs';
 
 request.get({
   url: swaggerPath,
