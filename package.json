@@ -2,7 +2,6 @@
   "name": "swagger2vue",
   "version": "1.0.0",
   "description": "Swagger2Vue",
-  "main": "index.js",
   "scripts": {
     "gen:api": "node bin/create_api/index.js"
   },

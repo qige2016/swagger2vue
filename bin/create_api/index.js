@@ -1,8 +1,9 @@
 const request = require('request')
-const swaggerGen = require('../../index.js')
 const fs = require('fs')
 const path = require('path')
 const _ = require('lodash')
+const parse = require('../../lib/parse.js')
+const codegen = require('./codegen.js')
 const swaggerPath = 'http://172.16.4.43:9527/v2/api-docs';
 
 request.get({
@@ -21,11 +22,11 @@ request.get({
       }
     })
     temp.paths = includeTag
-    const codeResult = swaggerGen({
+    const codeResult = codegen(parse({
       swagger: temp,
       moduleName: 'api',
       className: 'api'
-    })
+    }))
     fs.writeFileSync(path.join(__dirname, `../../dist/${tag.name}.js`), codeResult)
   })
 })
