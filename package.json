@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Swagger2Vue",
   "scripts": {
-    "gen:api": "node bin/create_api/index.js"
+    "gen:api": "node bin/create_api/index.js",
+    "gen:vuex": "node bin/create_vuex/index.js"
   },
   "author": "qizi",
   "dependencies": {
