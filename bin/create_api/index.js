@@ -4,6 +4,7 @@ const _ = require('lodash')
 const request = require('request')
 const parse = require('../../lib/parse.js')
 const codegen = require('./codegen.js')
+const dirMethods = require('../../lib/utils')
 const swaggerPath = 'http://172.16.4.43:9527/v2/api-docs';
 
 request.get({
@@ -13,6 +14,8 @@ request.get({
   const temp = body
   const tags = body.tags || []
   const paths = body.paths || {}
+  const dir = path.join(__dirname, '../../api')
+  dirMethods.mkdirsSync(dir) // 创建目录，同步方法
   // 根据tag分文件
   _.forEach(tags, (tag) => {
     const filterPath = {}
@@ -28,6 +31,6 @@ request.get({
       moduleName: 'api',
       className: 'api'
     }))
-    fs.writeFileSync(path.join(__dirname, `../../api/${tag.name}.js`), codeResult)
+    fs.writeFileSync(`${dir}/${tag.name}.js`, codeResult)
   })
 })
