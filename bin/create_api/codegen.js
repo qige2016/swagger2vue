@@ -7,9 +7,6 @@ const methods = fs.readFileSync(path.join(__dirname, './template/methods.hbs'), 
 const method = fs.readFileSync(path.join(__dirname, './template/method.hbs'), 'utf-8')
 Handlebars.registerPartial('methods', methods)
 Handlebars.registerPartial('method', method)
-Handlebars.registerHelper('toLowerCase', function (word) {
-  return word.toLowerCase()
-})
 Handlebars.registerHelper('pathParameter', function (path){
   return path.replace('{', '${')
 })
