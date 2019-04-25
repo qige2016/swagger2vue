@@ -1,0 +1,53 @@
+{{! 不生成 app专用的 api }}
+{{#if isApp}}
+{{else}}
+  {{! 注释 }}
+  {{#if summary}}// {{summary}}{{/if}}
+  {{! post、put、patch 使用 data }}
+  {{#if isData}}
+    {{#if variable}}
+      export function {{methodName}} ({{getVariable path}}, data) {
+        return request({
+          url: `{{pathParameter path}}`,
+          method: '{{method}}',
+          data
+        })
+      }
+      {{else}}
+      export function {{methodName}} (data) {
+        return request({
+          url: '{{path}}',
+          method: '{{method}}',
+          data
+        })
+      }
+    {{/if}}
+    {{! 非 post、put、 patch 使用 params }}
+    {{else}}
+    {{#if variable}}
+      export function {{methodName}} ({{getVariable path}}, params) {
+        return request({
+          url: `{{pathParameter path}}`,
+          {{#if isGet}}
+          {{! get方法 省略 method}}
+          {{else}}
+            method: '{{method}}',
+          {{/if}}
+          params
+        })
+      }
+      {{else}}
+      export function {{methodName}} (params) {
+        return request({
+          url: '{{path}}',
+          {{#if isGet}}
+          {{! get方法 省略 method }}
+          {{else}}
+            method: '{{method}}',
+          {{/if}}
+          params
+        })
+      }
+    {{/if}}
+  {{/if}}
+{{/if}}
