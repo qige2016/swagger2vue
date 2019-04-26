@@ -5,7 +5,7 @@ const request = require('request')
 const parse = require('../../lib/parse.js')
 const codegen = require('./codegen.js')
 const dirMethods = require('../../lib/utils')
-const swaggerPath = 'http://172.16.4.41:9527/v2/api-docs';
+const swaggerPath = 'http://172.16.4.29:9527/v2/api-docs';
 
 request.get({
   url: swaggerPath,
@@ -19,9 +19,11 @@ request.get({
   // 根据tag分文件
   _.forEach(tags, (tag) => {
     const filterPath = {}
+    const tagName = tag.name || ''
+    const tagName1 = tagName.replace(tagName[0], tagName[0].toLowerCase())
     _.forEach(paths, (path, key) => {
       const method = path.get || path.post || path.put || path.delete || path.patch || path.copy || path.head || path.options || path.link || path.unlink || path.purge || path.lock || path.unlock || path.propfind
-      if (method && method.tags.indexOf(tag.name) > -1) {
+      if (method && method.tags.indexOf(tagName) > -1) {
         filterPath[key] = path
       }
     })
@@ -31,6 +33,6 @@ request.get({
       moduleName: 'api',
       className: 'api'
     }))
-    fs.writeFileSync(`${dir}/${tag.name}.js`, codeResult)
+    fs.writeFileSync(`${dir}/${tagName1}.js`, codeResult)
   })
 })

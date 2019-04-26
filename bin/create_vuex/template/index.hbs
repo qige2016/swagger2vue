@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import Global from './modules/Global'
+import global from './modules/global'
 {{#modules}}
-  import {{this.name}} from './modules/{{this.name}}'
+  import {{initialLowerCase this.name}} from './modules/{{initialLowerCase this.name}}'
 {{/modules}}
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    Global,
-    {{#modules}}{{this.name}},{{/modules}}
+    global,
+    {{#modules}}{{initialLowerCase this.name}},{{/modules}}
   }
 })

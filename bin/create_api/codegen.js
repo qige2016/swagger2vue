@@ -16,6 +16,11 @@ Handlebars.registerHelper('getVariable', function (path){
 
 module.exports = function (data) {
   let template = Handlebars.compile(apiTemplate)(data)
-  template = beautify(template, {indent_size: 2, max_preserve_newlines: -1})
+  template = beautify(template, {
+    indent_size: 2,
+    max_preserve_newlines: 1,
+    brace_style: 'preserve-inline',
+    end_with_newline: true
+  })
   return template
 }
