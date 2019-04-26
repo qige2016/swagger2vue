@@ -12,6 +12,10 @@ Handlebars.registerHelper('getVariable', function (path){
 Handlebars.registerHelper('initialUpperCase', function (name){
   return name.replace(name[0], name[0].toUpperCase())
 })
+// 首字母小写
+Handlebars.registerHelper('initialLowerCase', function (name){
+  return name.replace(name[0], name[0].toLowerCase())
+})
 // 驼峰转下划线
 Handlebars.registerHelper('toLine', function (name){
   return name.replace(/([A-Z])/g,"_$1").toUpperCase()
@@ -19,7 +23,12 @@ Handlebars.registerHelper('toLine', function (name){
 
 const compile = function (temp, data) {
   let template = Handlebars.compile(temp)(data)
-  template = beautify(template, {indent_size: 2, max_preserve_newlines: -1})
+  template = beautify(template, {
+    indent_size: 2,
+    max_preserve_newlines: 1,
+    brace_style: 'preserve-inline',
+    end_with_newline: true
+  })
   return template
 }
 const index = function (data) {

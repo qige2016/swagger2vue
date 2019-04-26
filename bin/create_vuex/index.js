@@ -19,10 +19,13 @@ request.get({
   // 根据tag分文件
   _.forEach(tags, (tag) => {
     const filterPath = {}
+    const tagName = tag.name || ''
+    const tagName1 = tagName.replace(tagName[0], tagName[0].toLowerCase())
     _.forEach(paths, (path, key) => {
+      // 只有get方法才使用store
       const method = path.get
-      if (method && method.tags.indexOf(tag.name) > -1) {
-        filterPath[key] = path
+      if (method && method.tags.indexOf(tagName) > -1) {
+        filterPath[key] = { get: method }
       }
     })
     temp.paths = filterPath
@@ -30,9 +33,9 @@ request.get({
       swagger: temp,
       moduleName: 'vuex',
       className: 'vuex',
-      tag: tag.name
+      tag: tagName1
     }))
-    fs.writeFileSync(`${dir}/${tag.name}.js`, codeResult)
+    fs.writeFileSync(`${dir}/${tagName1}.js`, codeResult)
   })
   // 生成index.js
   const codeResult = codegen.index({modules: tags})
