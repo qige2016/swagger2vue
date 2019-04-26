@@ -6,15 +6,19 @@ import {
 
 const state = {
   {{#methods}}
-    {{#if summary}}// {{summary}}{{/if}}
-    {{res_body}}: {},
+    {{#if res_body}}
+      {{#if summary}}// {{summary}}{{/if}}
+      {{res_body}}: {},
+    {{/if}}
   {{/methods}}
 }
 
 const getters = {
   {{#methods}}
-    {{#if summary}}// {{summary}}{{/if}}
-    {{res_body}}: state => state.{{res_body}},
+    {{#if res_body}}
+      {{#if summary}}// {{summary}}{{/if}}
+      {{res_body}}: state => state.{{res_body}},
+    {{/if}}
   {{/methods}}
 }
 
@@ -34,10 +38,12 @@ const actions = {
 
 const mutations = {
   {{#methods}}
-    {{#if summary}}// {{summary}}{{/if}}
-    {{toLine methodName}}: (state, response) => {
-      state.{{res_body}} = response
-    },
+    {{#if res_body}}
+      {{#if summary}}// {{summary}}{{/if}}
+      {{toLine methodName}}: (state, response) => {
+        state.{{res_body}} = response
+      },
+    {{/if}}
   {{/methods}}
 }
 
