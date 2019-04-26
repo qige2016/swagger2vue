@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import global from './modules/global'
+import Global from './modules/Global'
 {{#modules}}
   import {{this.name}} from './modules/{{this.name}}'
 {{/modules}}
@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    global,
+    Global,
     {{#modules}}{{this.name}},{{/modules}}
   }
 })

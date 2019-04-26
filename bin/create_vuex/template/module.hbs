@@ -2,14 +2,44 @@ import {
   {{#methods}}
     {{methodName}},
   {{/methods}}
-} from '@/api/'
+} from '@/api/{{fileName}}'
 
-{{#module}}
-  {{> state }}
-  {{> getters }}
-  {{> actions }}
-  {{> mutations }}
-{{/module}}
+const state = {
+  {{#methods}}
+    {{#if summary}}// {{summary}}{{/if}}
+    {{res_body}}: {},
+  {{/methods}}
+}
+
+const getters = {
+  {{#methods}}
+    {{#if summary}}// {{summary}}{{/if}}
+    {{res_body}}: state => state.{{res_body}},
+  {{/methods}}
+}
+
+const actions = {
+  {{#methods}}
+    {{#if summary}}// {{summary}}{{/if}}
+    handle{{initialUpperCase methodName}} ({commit}, {{#if variable}}{ {{getVariable path}}, params } {{else}} params {{/if}}) {
+      return new Promise((resolve, reject) => {
+        {{methodName}}({{#if variable}}{{getVariable path}}, {{/if}}params).then(response => {
+          commit('{{toLine methodName}}', response)
+          resolve(response)
+        }).catch(error => console.log(error))
+      })
+    },
+  {{/methods}}
+}
+
+const mutations = {
+  {{#methods}}
+    {{#if summary}}// {{summary}}{{/if}}
+    {{toLine methodName}}: (state, response) => {
+      state.{{res_body}} = response
+    },
+  {{/methods}}
+}
 
 export default {
   state, getters, actions, mutations

@@ -20,7 +20,7 @@ request.get({
   _.forEach(tags, (tag) => {
     const filterPath = {}
     _.forEach(paths, (path, key) => {
-      const method = path.get || path.post || path.put || path.delete || path.patch || path.copy || path.head || path.options || path.link || path.unlink || path.purge || path.lock || path.unlock || path.propfind
+      const method = path.get
       if (method && method.tags.indexOf(tag.name) > -1) {
         filterPath[key] = path
       }
@@ -29,7 +29,8 @@ request.get({
     const codeResult = codegen.vuexModule(parse({
       swagger: temp,
       moduleName: 'vuex',
-      className: 'vuex'
+      className: 'vuex',
+      tag: tag.name
     }))
     fs.writeFileSync(`${dir}/${tag.name}.js`, codeResult)
   })
