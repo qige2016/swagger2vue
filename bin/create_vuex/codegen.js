@@ -17,15 +17,16 @@ Handlebars.registerPartial('mutations', mutations)
   return path.match(/\{.*\}/g)[0].slice(1, -1)
 }) */
 
-const index = function (data) {
-  let template = Handlebars.compile(indexTemplate)(data)
+const compile = function (temp, data) {
+  let template = Handlebars.compile(temp)(data)
   template = beautify(template, {indent_size: 2, max_preserve_newlines: -1})
   return template
 }
+const index = function (data) {
+  return compile(indexTemplate, data)
+}
 const vuexModule = function (data) {
-  let template = Handlebars.compile(moduleTemplate)(data)
-  template = beautify(template, {indent_size: 2, max_preserve_newlines: -1})
-  return template
+  return compile(moduleTemplate, data)
 }
 module.exports = {
   index, vuexModule
