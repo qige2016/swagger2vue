@@ -1,18 +1,17 @@
 {
   "name": "swagger2vue",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Swagger2Vue",
-  "scripts": {
-    "gen:api": "node bin/create_api/index.js",
-    "gen:vuex": "node bin/create_vuex/index.js"
+  "bin": {
+    "swagger2vue": "./bin/swagger2vue.js"
   },
   "author": "qizi",
   "dependencies": {
     "handlebars": "^4.0.6",
     "js-beautify": "^1.6.12",
-    "lodash": "^4.17.4"
-  },
-  "devDependencies": {
+    "lodash": "^4.17.4",
+    "commander": "^2.18.0",
+    "inquirer": "^6.2.0",
     "request": "^2.88.0"
   }
 }
