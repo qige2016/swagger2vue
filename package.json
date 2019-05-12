@@ -1,11 +1,28 @@
 {
   "name": "swagger2vue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Swagger2Vue",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "bin": {
     "swagger2vue": "./bin/swagger2vue.js"
   },
-  "author": "qizi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qige2016/swagger2vue.git"
+  },
+  "keywords": [
+    "swagger",
+    "vue",
+    "axios"
+  ],
+  "author": "qige2016 <286882998@qq.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qige2016/swagger2vue/issues"
+  },
+  "homepage": "https://github.com/qige2016/swagger2vue#readme",
   "dependencies": {
     "handlebars": "^4.0.6",
     "js-beautify": "^1.6.12",
@@ -13,5 +30,6 @@
     "commander": "^2.18.0",
     "inquirer": "^6.2.0",
     "request": "^2.88.0"
-  }
+  },
+  "devDependencies": {}
 }
